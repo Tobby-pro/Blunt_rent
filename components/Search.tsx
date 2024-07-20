@@ -10,7 +10,7 @@ const Search = () => {
 	const { replace } = useRouter()
 	
 	const handleSearch = (searchTerm: string) => {
-		const params = new URLSearchParams(searchParams)
+		const params = new URLSearchParams(searchParams || undefined)
 		if (searchTerm) {
 			params.set('query', searchTerm)
 		}
@@ -29,7 +29,7 @@ replace(`${Pathname}? ${params.toString()}`)
 			id="search"
 			className="block w-full max-w-md lg:max-w-[36rem] h-12 rounded-xl border border-1 bg-[linear-gradient(110deg,#000103,45%,#1e2631,55%,#000103)] bg-[length:200%_100%] px-6 py-2 font-medium text-slate-400 transition-colors animate-shimmer outline-none outline-2 placeholder:text-gray-600 placeholder:text-base"
 			placeholder="search location, number of rooms, price range."
-			defaultValue={searchParams.get('query')?.toString()}
+			 defaultValue={searchParams?.get('query') ?? ''}
 			onChange={(e) => {
 			  handleSearch(e.target.value);
 			}}
